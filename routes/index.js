@@ -30,19 +30,17 @@ router.post('/article/add', (req, res) => {
 
 
 
-router.post('/articles', (req, res) => {
-  ArticleModel.find({ category: req.body.category }).then(data => {
+router.post('/articles', async (req, res) => {
+  const data = await ArticleModel.find({ category: req.body.category })
       res.json({ result: true, articles: data });
-  });
+  
 })
 
 
 
-router.get('/articles', (req, res) => {
+router.get('/articles', async (req, res) => {
   
-  ArticleModel.find({  }).then(data => {
-    console.log("🚀 ~ file: index.js:44 ~ ArticleModel.find ~ data", data)
-    res.json({ result: true, articles: data });
-  });
+  const data = await ArticleModel.find({ })
+  res.json({ result: true, articles: data });
 });
 module.exports = router;
