@@ -110,13 +110,21 @@ router.get('/contact/message', async (req, res) => {
   res.json({ result: true, messages: data });
 });
 
+router.post('/contact/delete', async (req, res) => {
+ ContactModel.findOneAndDelete({_id: req.body.id},function (err, docs) {
+      if (err){
+          console.log(err)
+      }
+      else{
+          console.log("Deleted User : ", docs);
+      }})
+  res.json({ result: true });
+});
+
 router.put('/contact/status', async (req, res) => {
    await ContactModel.findByIdAndUpdate( req.body.id, { status: req.body.status})
    const response = await ContactModel.findById(req.body.id)
    const responses = await ContactModel.find({})
-   console.log("🚀 ~ file: index.js:81 ~ router.put ~ responses", responses)
-   console.log("🚀 ~ file: index.js:79 ~ router.put ~ response", response)
-  console.log("🚀 ~ file: index.js:79 ~ router.put ~ response", req.body)
   res.json({ result: true, message : response, messages : responses })
 })
 
@@ -124,9 +132,6 @@ router.put('/contact/read', async (req, res) => {
   await ContactModel.findByIdAndUpdate( req.body.id, { lu: req.body.read})
   const response = await ContactModel.findById(req.body.id)
   const responses = await ContactModel.find({})
-  console.log("🚀 ~ file: index.js:81 ~ router.put ~ responses", responses)
-  console.log("🚀 ~ file: index.js:79 ~ router.put ~ response", response)
- console.log("🚀 ~ file: index.js:79 ~ router.put ~ response", req.body)
  res.json({ result: true, message : response, messages : responses })
 })
 
