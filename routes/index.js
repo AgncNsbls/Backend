@@ -63,12 +63,16 @@ router.post('/contact', async (req, res) => {
     service: 'gmail',
     auth: {
       user: 'agencenuisibles.dev@gmail.com',
-      pass: 'azerty1908'
-    }
+      pass: 'fmpepblvbbezxmtk'
+    },
+    secure:false,
+    // here it goes
+    tls: {rejectUnauthorized: false},
+    debug:true
   });
   var mailOptions = {
     from: 'agencenuisibles.dev@gmail.com',
-    to: 'agencenuisibles.dev@gmail.com',
+    to: 'dohollo.an@gmail.com',
     subject: 'Nouvelle demande de contact',
     text: 'Une nouvelle demande de contact vous attend'
   };
