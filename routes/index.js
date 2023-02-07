@@ -74,7 +74,7 @@ router.post('/contact', async (req, res) => {
     from: 'agencenuisibles.dev@gmail.com',
     to: 'dohollo.an@gmail.com',
     subject: 'Nouvelle demande de contact',
-    text: 'Une nouvelle demande de contact vous attend'
+    text: `Une nouvelle demande de contact vous attend de ${req.body.prenom} ${req.body.nom} numéro :${req.body.phone} mail:${req.body.mail} : ${req.body.message}`
   };
   
   transporter.sendMail(mailOptions, function(error, info){
