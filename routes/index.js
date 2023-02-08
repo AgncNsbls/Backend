@@ -89,7 +89,7 @@ router.post('/contact', async (req, res) => {
     prenom: req.body.prenom,
   nom: req.body.nom,
   message: req.body.message,
-  //date: Date,
+  date: Date.now(),
   mail: req.body.mail,
   type: req.body.type,
   postal: req.body.postal,
@@ -118,7 +118,8 @@ router.post('/contact/delete', async (req, res) => {
       else{
           console.log("Deleted User : ", docs);
       }})
-  res.json({ result: true });
+  const responses = await ContactModel.find({})
+  res.json({ result: true, messages : responses });
 });
 
 router.put('/contact/status', async (req, res) => {
